@@ -1,10 +1,14 @@
 {
   "name": "esi-cap",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Enterprise System Integration Based on SAP CAP",
   "main": "dist/index.js",
-  "author": "SAP-Code-World (sap.consultant.freelancer@gmail.com)",
+  "author": "SAP-Code-World",
   "license": "CC-BY-ND-4.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SAP-code-world/esi-cap.git"
+  },
   "keywords": [
     "SAP",
     "CAP",
@@ -31,5 +35,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/SAP-code-world/esi-cap/issues"
+  },
+  "homepage": "https://github.com/SAP-code-world/esi-cap#readme"
 }
