@@ -1,0 +1,35 @@
+{
+  "name": "esi-cap",
+  "version": "0.0.2",
+  "description": "Enterprise System Integration Based on SAP CAP",
+  "main": "dist/index.js",
+  "author": "SAP-Code-World (sap.consultant.freelancer@gmail.com)",
+  "license": "CC-BY-ND-4.0",
+  "keywords": [
+    "SAP",
+    "CAP",
+    "Remote",
+    "Service",
+    "Integration"
+  ],
+  "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^4.0.2",
+    "@sap-cloud-sdk/http-client": "^3.26.4",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "soap": "^1.1.11",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1",
+    "uglify-js": "^3.19.3"
+  },
+  "scripts": {
+    "build": "node index.js",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ]
+}
