@@ -1,6 +1,6 @@
 {
   "name": "esi-cap",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Enterprise System Integration Based on SAP CAP",
   "main": "dist/index.js",
   "author": "SAP-Code-World",
@@ -22,7 +22,8 @@
     "express": "^5.1.0",
     "lodash": "^4.17.21",
     "soap": "^1.1.11",
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.6.2",
+    "log4js": "^6.9.1"
   },
   "devDependencies": {
     "javascript-obfuscator": "^4.1.1",
