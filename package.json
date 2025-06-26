@@ -38,7 +38,7 @@
     "compile:main": "node build/index.js",
     "clean": "rimraf ./.types",
     "build": "npm run compile:main && npm run compile:types && npm run clean",
-    "prepublishOnly": "npm run clean && npm run build",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
