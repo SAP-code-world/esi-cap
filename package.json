@@ -20,7 +20,10 @@
   "dependencies": {
     "@sap-cloud-sdk/connectivity": "^4.0.2",
     "@sap-cloud-sdk/http-client": "^3.26.4",
+    "crypto": "^1.0.1",
     "express": "^5.1.0",
+    "fs-extra": "^11.3.0",
+    "https": "^1.0.0",
     "lodash": "^4.17.21",
     "log4js": "^6.9.1",
     "soap": "^1.1.11",
