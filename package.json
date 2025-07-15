@@ -23,15 +23,17 @@
     "express": ">=5",
     "fs-extra": "^11.3.0",
     "https": ">=1",
+    "lodash": "^4.17.21",
     "log4js": ">=6.9",
     "soap": ">=1",
-    "lodash": "^4.17.21",
+    "uuid": "^11.1.0",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "javascript-obfuscator": "^4.1.1",
     "typescript": "^5.8.3",
-    "uglify-js": "^3.19.3"
+    "uglify-js": "^3.19.3",
+    "rimraf": "^6.0.1"
   },
   "scripts": {
     "compile:types": "tsc",
