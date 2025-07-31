@@ -1,4 +1,14 @@
 export namespace service {
+    namespace events {
+        let PreBefore: string;
+        let PostBefore: string;
+        let PreOn: string;
+        let PreOnAssociation: string;
+        let PostOn: string;
+        let PreAfter: string;
+        let PostAfter: string;
+        let None: string;
+    }
     function sanitizeData(oData: any, oFieldsArray: any, includeID?: boolean): any;
     function get(oRequest: any, sServiceName?: any, sEntityName?: any, sFor?: string): Promise<any>;
     function executeRequest(oService: object, oRequest: object): Promise<any>;
