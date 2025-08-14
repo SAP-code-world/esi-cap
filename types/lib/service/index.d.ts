@@ -19,7 +19,7 @@ export namespace service {
     function handleUpdate(oService: object, oRequest: object, fPreUpdate: Function, oWhere: any, isOldDataRequired?: boolean): Promise<any>;
     function handleCount(oData: object, oRequest: object): Promise<void>;
     namespace iflow {
-        function call(oService: object, oJsonData: object): Promise<void>;
+        function call(oService: object, oRequest: object, oJsonData: object): Promise<void>;
     }
     namespace soap {
         function handleRead(oRequest: object, fNextHandler: any): Promise<any>;
