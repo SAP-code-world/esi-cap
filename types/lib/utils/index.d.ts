@@ -61,3 +61,4 @@ export class UUID {
      */
     inverse(sUUID: string): object;
 }
+export { _LOG };

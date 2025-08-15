@@ -8,17 +8,19 @@ import { query } from "./lib/query";
 import { service } from "./lib/service";
 import { impl } from "./lib/impl";
 import { connect } from "./lib/connect";
-export namespace utils {
+import { _LOG } from "./lib/utils";
+export declare namespace utils {
     export { date };
     export { xml };
     export { json };
     export { array };
     export { UUID };
 }
-export namespace esi {
+export declare namespace esi {
     export { log };
     export { query };
     export { service };
     export { impl };
     export { connect };
 }
+export { _LOG };

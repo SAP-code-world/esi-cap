@@ -27,6 +27,7 @@ export namespace query {
             function _toANDArray(oWhereClause: any, bAlwwaysArray?: boolean): any[];
             function toANDArray(oWhereClause: any, bAlwwaysArray?: boolean): any[];
             function convert(oIDWhere: object, oIDColumns: object, fConvertLogic?: Function): any[];
+            function apply(oData: any, oWhereClause: any): any;
         }
     }
 }
