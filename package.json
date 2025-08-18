@@ -25,21 +25,23 @@
     "https": ">=1",
     "lodash": "^4.17.21",
     "log4js": ">=6.9",
+    "minimist": "^1.2.8",
     "soap": ">=1",
     "uuid": "^11.1.0",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "javascript-obfuscator": "^4.1.1",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.3",
-    "uglify-js": "^3.19.3",
-    "rimraf": "^6.0.1"
+    "uglify-js": "^3.19.3"
   },
   "scripts": {
     "compile:types": "tsc",
     "compile:main": "node build/index.js",
     "clean": "rimraf ./.types",
     "build": "npm run compile:main && npm run compile:types && npm run clean",
+    "config": "node build/index.js --config",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
