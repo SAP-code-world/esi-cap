@@ -11,6 +11,7 @@ export namespace service {
     }
     function sanitizeData(oData: any, oFieldsArray: any, includeID?: boolean): any;
     function get(oRequest: any, sServiceName?: any, sEntityName?: any, sFor?: string): Promise<any>;
+    function sendQuery(oService: object, oRequest: object, oQuery: object): Promise<any>;
     function executeRequest(oService: object, oRequest: object): Promise<any>;
     function handleReadByID(oService: any, oRequest: any, oID: any): Promise<any>;
     function handleDeleteByID(oService: any, oRequest: any, oID: any): Promise<any>;
