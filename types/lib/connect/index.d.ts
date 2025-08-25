@@ -1,3 +1,3 @@
 export namespace connect {
-    function to(oService: any): Promise<any>;
+    function to(oService: any): any;
 }

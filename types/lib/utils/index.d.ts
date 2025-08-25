@@ -17,6 +17,8 @@ export namespace json {
     export function flat(oJson: any, sFlattenedProperty: any): {};
 }
 export namespace array {
+    export function flat_1(oArray: any, sFlattenedProperty: any): any;
+    export { flat_1 as flat };
     export function unique_1(oArray: any): any;
     export { unique_1 as unique };
     export function order_1(oArray: any, oOrder: any): any;
