@@ -1,40 +1,41 @@
 export namespace date {
-    function isValid(sDate: any): Promise<boolean>;
+    function isValid(sDate: string): Promise<boolean>;
 }
 export namespace xml {
-    export function isValid_1(oXML: any): Promise<boolean>;
+    export function isValid_1(oXML: object): Promise<boolean>;
     export { isValid_1 as isValid };
 }
 export namespace json {
-    export function isValid_2(oJson: any): boolean;
+    export function isValid_2(oJson: object): boolean;
     export { isValid_2 as isValid };
-    export function getValue(oJson: any, sPropertyPath: any): any;
-    export function unique(oNestedArray: any): any;
-    export function order(oJson: any, oKeyOrder: any): {};
-    export function projection(oJson: any, oColumns: any): any;
-    export function map(oJson: any, oMap: any): {};
-    export function merge(oJson1: any, oJson2: any): any;
-    export function flat(oJson: any, sFlattenedProperty: any): {};
+    export function getValue(oJson: object, sPropertyPath: string): any;
+    export function unique(oNestedArray: any[]): any[];
+    export function order(oJson: object, oKeyOrder: any[]): object;
+    export function projection(oJson: object, oColumns: string[]): object;
+    export function map(oJson: object, oMap: object): object;
+    export function merge(oJson1: object, oJson2: object): object;
+    export function flat(oJson: object, sFlattenedProperty: string): object;
 }
 export namespace array {
-    export function flat_1(oArray: any, sFlattenedProperty: any): any;
+    export function topN(oSortedArray: any[], iTop: int): any[];
+    export function flat_1(oArray: any[], sFlattenedProperty: string): any[];
     export { flat_1 as flat };
-    export function unique_1(oArray: any): any;
+    export function unique_1(oArray: any[]): any;
     export { unique_1 as unique };
-    export function order_1(oArray: any, oOrder: any): any;
+    export function order_1(oArray: any[], oOrder: any[]): any[];
     export { order_1 as order };
-    export function projection_1(oArray: any, oColumns: any): any;
+    export function projection_1(oArray: any[], oColumns: any[]): any[];
     export { projection_1 as projection };
-    export function map_1(oArray: any, oMap: any): any;
+    export function map_1(oArray: any[], oMap: any[]): any[];
     export { map_1 as map };
-    export function sort(oArray: object, oOrderBy: object): any;
-    export function hasElement(oArray: any, oElement: any): any;
+    export function sort(oArray: any[], oOrderBy: object): any;
+    export function hasElement(oArray: any[], oElement: any): any;
     export function toArray(oArray: any): any[];
-    export function toDisArray(oArray: any): any;
-    export function toInterleavedArray(oArray: any, oElement: any): any;
-    export function toArrayProjection(oArray: any, sProjectionFieldName: any): any[];
-    export function toGroupByPropertyName(oArray: any, sPropertyName: any): any;
-    export function toGroupByPropertyList(oArray: any, oPropertyList: any): any;
+    export function toDisArray(oArray: any[]): any;
+    export function toInterleavedArray(oArray: any[], oElement: any): any[];
+    export function toArrayProjection(oArray: any[], sProjectionFieldName: string): any[];
+    export function toGroupByPropertyName(oArray: any[], sPropertyName: string): any[];
+    export function toGroupByPropertyList(oArray: any[], oPropertyList: string[]): any[];
 }
 /**
  * UUID handles UUID related API's.
