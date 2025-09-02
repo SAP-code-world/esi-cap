@@ -1,9 +1,9 @@
 export namespace service {
     namespace events {
+        let InitalizeUser: string;
         let PreBefore: string;
         let PostBefore: string;
         let PreOn: string;
-        let PreOnAssociation: string;
         let PreMeshUp: string;
         let PostOn: string;
         let PreAfter: string;
@@ -11,7 +11,7 @@ export namespace service {
         let None: string;
     }
     function sanitizeData(oData: any, oFieldsArray: any, includeID?: boolean): any;
-    function get(oRequest: any, sServiceName?: any, sEntityName?: any, sFor?: string): any;
+    function get(oRequest: any): any;
     function sendQuery(oService: object, oRequest: object, oQuery: object): Promise<any>;
     function executeRequest(oService: object, oRequest: object): Promise<any>;
     namespace iflow {

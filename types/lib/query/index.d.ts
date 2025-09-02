@@ -1,3 +1,7 @@
+/**
+ * - Request Object
+ */
+export type Request = any;
 export namespace query {
     namespace SELECT {
         namespace columns {
@@ -27,6 +31,7 @@ export namespace query {
             function _toANDArray(oWhereClause: any, bAlwwaysArray?: boolean): any[];
             function toANDArray(oWhereClause: any, bAlwwaysArray?: boolean): any[];
             function convert(oIDWhere: object, oIDColumns: object, fConvertLogic?: Function): any[];
+            function add(oRequest: Request, oWhereClause: any[]): void;
             function apply(oData: any, oWhereClause: any): any;
         }
     }

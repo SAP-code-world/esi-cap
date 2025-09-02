@@ -17,7 +17,8 @@ export namespace json {
     export function flat(oJson: object, sFlattenedProperty: string): object;
 }
 export namespace array {
-    export function topN(oSortedArray: any[], iTop: int): any[];
+    export function add(oArray: any[], oItem: any): any[];
+    export function topN(oSortedArray: any[], iTop: number): any[];
     export function flat_1(oArray: any[], sFlattenedProperty: string): any[];
     export { flat_1 as flat };
     export function unique_1(oArray: any[]): any;
@@ -29,6 +30,20 @@ export namespace array {
     export function map_1(oArray: any[], oMap: any[]): any[];
     export { map_1 as map };
     export function sort(oArray: any[], oOrderBy: object): any;
+    export function filter(oArray: any[], oFilterCondition: {
+        /**
+         * - The property name to filter by.
+         */
+        name: string;
+        /**
+         * - The comparison operator.
+         */
+        op: "=" | "!=" | ">" | "<" | ">=" | "<=";
+        /**
+         * - The value to compare against.
+         */
+        value: string | number | boolean;
+    }[]): any[];
     export function hasElement(oArray: any[], oElement: any): any;
     export function toArray(oArray: any): any[];
     export function toDisArray(oArray: any[]): any;
