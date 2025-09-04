@@ -1,6 +1,5 @@
 export namespace service {
     namespace events {
-        let InitalizeUser: string;
         let PreBefore: string;
         let PostBefore: string;
         let PreOn: string;
@@ -23,7 +22,7 @@ export namespace service {
     function handleInsert(oService: object, oRequest: object, fPreInsert?: Function): Promise<any>;
     function handleUpdate(oService: object, oRequest: object, fPreUpdate: Function, oWhere: any, isOldDataRequired?: boolean): Promise<any>;
     function handleCount(oData: object, oRequest: object): Promise<void>;
-    function handleRead(oService: object, oRequest: object, fNextHandler: Function): Promise<any>;
     function handlePostOn(oRequest: object): Promise<any>;
     function handleAction(oService: any, oRequest: any): Promise<any>;
+    function handleRead(oService: object, oRequest: object, fNextHandler: Function): Promise<any>;
 }
