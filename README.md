@@ -32,6 +32,6 @@ Submit an issue via our [GitHub Issues Tracker](https://github.com/SAP-code-worl
 
 ## 📄 License
 
-This package is provided under the terms of the SAP-Code-World Usage License Agreement.
+This package is provided under the terms of the **SAP-Code-World** [Usage License Agreement](LICENSE).
 
-© 2025 SAP-Code-World. All rights reserved.
+© 2025 **SAP-Code-World**. All rights reserved.

@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "author": "SAP-Code-World",
-  "license": "CC-BY-ND-4.0",
+  "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SAP-code-world/esi-cap.git"
