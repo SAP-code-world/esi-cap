@@ -9,6 +9,7 @@ export namespace service {
         let PostAfter: string;
         let None: string;
     }
+    function enrichUserContext(oRequest: object): Promise<void>;
     function sanitizeData(oData: any, oFieldsArray: any, includeID?: boolean): any;
     function get(oRequest: any): any;
     function sendQuery(oService: object, oRequest: object, oQuery: object): Promise<any>;
