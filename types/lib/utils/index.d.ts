@@ -11,7 +11,7 @@ export namespace json {
     export function replace(oJson: object, sOldValue: string, sNewValue: string): void;
     export function getValue(oJson: object, sPropertyPath: string): any;
     export function unique(oNestedArray: any[]): any[];
-    export function order(oJson: object, oKeyOrder: any[]): object;
+    export function order(oJson: object, oKeyOrder: string[]): object;
     export function projection(oJson: object, oColumns: string[]): object;
     export function map(oJson: object, oMap: object): object;
     export function merge(oJson1: object, oJson2: object): object;
@@ -24,9 +24,9 @@ export namespace array {
     export { flat_1 as flat };
     export function unique_1(oArray: any[]): any;
     export { unique_1 as unique };
-    export function order_1(oArray: any[], oOrder: any[]): any[];
+    export function order_1(oArray: any[], oOrder: string[]): any[];
     export { order_1 as order };
-    export function projection_1(oArray: any[], oColumns: any[]): any[];
+    export function projection_1(oArray: any[], oColumns: string[]): any[];
     export { projection_1 as projection };
     export function map_1(oArray: any[], oMap: any[]): any[];
     export { map_1 as map };
