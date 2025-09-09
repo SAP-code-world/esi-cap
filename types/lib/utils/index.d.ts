@@ -50,6 +50,7 @@ export namespace array {
     export function toDisArray(oArray: any[]): any;
     export function toInterleavedArray(oArray: any[], oElement: any): any[];
     export function toArrayProjection(oArray: any[], sProjectionFieldName: string): any[];
+    export function findProperty(oArray: any[], sProjectionFieldName: string): any[];
     export function toGroupByPropertyName(oArray: any[], sPropertyName: string): any[];
     export function toGroupByPropertyList(oArray: any[], oPropertyList: string[]): any[];
 }

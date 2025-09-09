@@ -12,7 +12,8 @@ export namespace service {
     function enrichUserContext(oRequest: object): Promise<void>;
     function sanitizeData(oData: any, oFieldsArray: any, includeID?: boolean): any;
     function get(oRequest: any): any;
-    function sendQuery(oService: object, oRequest: object, oQuery: object): Promise<any>;
+    function getEntityColumns(oService: object, oRequest: object): string[];
+    function sendQuery(oService: object, oRequest: object, oQuery?: object): Promise<any>;
     function executeRequest(oService: object, oRequest: object): Promise<any>;
     namespace iflow {
         function call(oService: object, oRequest: object, oJsonData: object): Promise<void>;
