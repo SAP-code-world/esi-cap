@@ -21,6 +21,7 @@
     "@sap-cloud-sdk/connectivity": ">=4",
     "@sap-cloud-sdk/http-client": ">=4",
     "express": ">=5",
+    "deasync": "^0.1.30",
     "fs-extra": "^11.3.0",
     "https": ">=1",
     "lodash": "^4.17.21",
