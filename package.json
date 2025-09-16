@@ -1,6 +1,6 @@
 {
   "name": "esi-cap",
-  "version": "1.6.16",
+  "version": "1.6.17",
   "description": "Enterprise System Integration Based on SAP CAP",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
