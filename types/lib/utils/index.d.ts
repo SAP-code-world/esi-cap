@@ -67,7 +67,7 @@ export class UUID {
      * @private
      * @static
      */
-    private static "__#1@#instance";
+    private static #instance;
     /** Internal configuration — not part of public API @private @type {object} */
     private _Config;
     /** Returns a UUID representation of the input Json Data
