@@ -12,7 +12,7 @@ export namespace json {
     export function getValue(oJson: object, sPropertyPath: string): any;
     export function unique(oNestedArray: any[]): any[];
     export function order(oJson: object, oKeyOrder: string[]): object;
-    export function projection(oJson: object, oColumns: string[]): object;
+    export function projection(oJson: object, oColumns: string[], bHasAssociattion?: boolean): object;
     export function map(oJson: object, oMap: object): object;
     export function merge(oJson1: object, oJson2: object): object;
     export function flat(oJson: object, sFlattenedProperty: string): object;
@@ -26,7 +26,7 @@ export namespace array {
     export { unique_1 as unique };
     export function order_1(oArray: any[], oOrder: string[]): any[];
     export { order_1 as order };
-    export function projection_1(oArray: any[], oColumns: string[]): any[];
+    export function projection_1(oArray: any[], oColumns: string[], bHasAssociattion?: boolean): any[];
     export { projection_1 as projection };
     export function map_1(oArray: any[], oMap: any[]): any[];
     export { map_1 as map };
