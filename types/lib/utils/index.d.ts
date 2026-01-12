@@ -8,6 +8,7 @@ export namespace xml {
 export namespace json {
     export function isValid_2(oJson: object): boolean;
     export { isValid_2 as isValid };
+    export function copy(oJson: object): any;
     export function replace(oJson: object, sOldValue: string, sNewValue: string, oEvaluate?: object): void;
     export function getValue(oJson: object, sPropertyPath: string): any;
     export function unique(oNestedArray: any[]): any[];

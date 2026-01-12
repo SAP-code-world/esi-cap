@@ -20,11 +20,12 @@ export namespace service {
     }
     function handleReadByID(oService: any, oRequest: any, oID: any): Promise<any>;
     function handleDeleteByID(oService: any, oRequest: any, oID: any): Promise<any>;
+    function handleEvent(oService: object, oRequest: object, fEventHandler?: Function): Promise<any>;
     function handleCreate(oService: object, oRequest: object, fPreInsert?: Function): Promise<any>;
     function handleInsert(oService: object, oRequest: object, fPreInsert?: Function): Promise<any>;
     function handleUpdate(oService: object, oRequest: object, fPreUpdate: Function, oWhere: any, isOldDataRequired?: boolean): Promise<any>;
     function handleCount(oData: object, oRequest: object): Promise<void>;
     function handlePostOn(oService: object, oRequest: object): Promise<any>;
-    function handleAction(oService: any, oRequest: any): Promise<any>;
+    function handleHandler(oService: any, oRequest: any): Promise<any>;
     function handleRead(oService: object, oRequest: object, fNextHandler: Function): Promise<any>;
 }

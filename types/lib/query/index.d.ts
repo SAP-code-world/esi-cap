@@ -3,6 +3,9 @@
  */
 export type Request = any;
 export namespace query {
+    namespace DELETE {
+        function getKeyPropertyValueByName(oRequest: Request, sPropertyName: string): any;
+    }
     namespace SELECT {
         namespace columns {
             function get(oColumns: any): any;

@@ -44,6 +44,7 @@
     "build": "npm run compile:main && npm run compile:types && npm run clean",
     "config": "node build/index.js --config",
     "prepublishOnly": "npm run build",
+    "postversion": "npm run build && git add . && git commit -m 'chore(release): v${npm_package_version} artifacts' && git push origin main --follow-tags",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
