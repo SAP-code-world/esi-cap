@@ -48,7 +48,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run pull",
     "prepare": "npm run build",
-    "postpublish": "cross-var git add . && git commit -m 'chore(release): v$npm_package_version artifacts' && git push origin main --follow-tags",
+    "postpublish": "node build/postpublish.js",
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major"
