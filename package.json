@@ -49,6 +49,7 @@
     "prepublishOnly": "npm run pull",
     "prepare": "npm run build",
     "postpublish": "node build/postpublish.js",
+    "gitonly": "npm run prepublishOnly && npm run prepare && npm run postpublish",
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major"
