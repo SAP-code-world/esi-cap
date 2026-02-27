@@ -17,6 +17,7 @@ export namespace json {
     export function map(oJson: object, oMap: object): object;
     export function merge(oJson1: object, oJson2: object): object;
     export function flat(oJson: object, sFlattenedProperty: string): object;
+    export function stripUndefined(oSourceJson: object): object;
 }
 export namespace array {
     export function add(oArray: any[], oItem: any): any[];

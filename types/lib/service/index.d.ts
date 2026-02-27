@@ -16,7 +16,7 @@ export namespace service {
     function sendQuery(oService: object, oRequest: object, oQuery?: object): Promise<any>;
     function executeRequest(oService: object, oRequest: object): Promise<any>;
     namespace iflow {
-        function call(oService: object, oRequest: object, oJsonData: object): Promise<void>;
+        function call(oRequest: object, oJsonData: object, onError?: () => Promise<void>): Promise<void>;
     }
     function handleReadByID(oService: any, oRequest: any, oID: any): Promise<any>;
     function handleDeleteByID(oService: any, oRequest: any, oID: any): Promise<any>;
