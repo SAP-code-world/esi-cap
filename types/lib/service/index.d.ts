@@ -14,6 +14,7 @@ export namespace service {
     function get(oRequest: any): any;
     function getEntityColumns(oService: object, oRequest: object): string[];
     function sendQuery(oService: object, oRequest: object, oQuery?: object): Promise<any>;
+    function sendRequest(oService: object, oRequest: object): Promise<any>;
     function executeRequest(oService: object, oRequest: object): Promise<any>;
     namespace iflow {
         function call(oRequest: object, oJsonData: object, onError?: () => Promise<void>): Promise<void>;
