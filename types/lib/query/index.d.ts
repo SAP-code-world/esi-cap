@@ -39,3 +39,4 @@ export namespace query {
         }
     }
 }
+//# sourceMappingURL=index.d.ts.map

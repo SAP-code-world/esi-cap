@@ -24,3 +24,4 @@ export declare namespace esi {
     export { connect };
 }
 export { _LOG };
+//# sourceMappingURL=index.d.ts.map

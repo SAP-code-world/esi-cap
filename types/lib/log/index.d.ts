@@ -6,3 +6,4 @@ export function log(sServiceName?: any): {
     error: (oEvent: any, oRequest: any, ...oArgs: any[]) => void;
     fatal: (oEvent: any, oRequest: any, ...oArgs: any[]) => void;
 };
+//# sourceMappingURL=index.d.ts.map

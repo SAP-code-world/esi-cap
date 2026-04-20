@@ -26,7 +26,8 @@ export namespace service {
     function handleInsert(oService: object, oRequest: object, fPreInsert?: Function): Promise<any>;
     function handleUpdate(oService: object, oRequest: object, fPreUpdate: Function, oWhere: any, isOldDataRequired?: boolean): Promise<any>;
     function handleCount(oData: object, oRequest: object): Promise<void>;
-    function handlePostOn(oService: object, oRequest: object): Promise<any>;
+    function handlePostOn(oService: object, oRequest: object): Promise<any[]>;
     function handleHandler(oService: any, oRequest: any): Promise<any>;
     function handleRead(oService: object, oRequest: object, fNextHandler: Function): Promise<any>;
 }
+//# sourceMappingURL=index.d.ts.map
