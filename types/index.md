@@ -1,4 +1,4 @@
-# esi-cap Utilities API Reference
+# esi-cap API Reference
 
 > **Module:** `esi-cap` Package
 > **Purpose:** `esi-cap` is a specialized API package designed for **Enterprise System Integration** within the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap/docs/) framework. It streamlines communication with remote systems and provides native support for service associations, requiring minimal configuration to achieve out-of-the-box connectivity.
