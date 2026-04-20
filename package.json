@@ -1,6 +1,6 @@
 {
   "name": "esi-cap",
-  "version": "1.7.32",
+  "version": "1.7.33",
   "description": "Enterprise System Integration Based on SAP CAP",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -43,7 +43,7 @@
     "compile:main": "node build/index.js",
     "clean": "rimraf ./.types",
     "pull": "git submodule update --init --recursive --remote",
-    "build": "npm run compile:main && npm run compile:types && npm run clean",
+    "build": "npm run compile:types && npm run compile:main && npm run clean",
     "config": "node build/index.js --config",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run pull",

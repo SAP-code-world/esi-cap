@@ -5,11 +5,13 @@
         "declarationMap": true,
         "emitDeclarationOnly": true,
         "skipLibCheck": true,
-        "removeComments": false ,
+        "removeComments": false,
+        "maxNodeModuleJsDepth": 1,
         "outDir": "types",
         "rootDir": ".types",
-        "module": "commonjs",
-        "target": "ES6"
+        "module": "CommonJS",
+        "target": "ESNext",
+        "moduleResolution": "node"
     },
     "include": [
         ".types/**/*"
