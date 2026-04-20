@@ -1,7 +1,7 @@
 # esi-cap Utilities API Reference
 
-> **Module:** `src/lib/utils/index.js`  
-> **Purpose:** Core utility belt for the esi-cap framework — date validation, XML parsing, JSON manipulation, array operations, and UUID generation/parsing.
+> **Module:** `utils`  
+> **Purpose:** Core utility belt — date validation, XML parsing, JSON manipulation, array operations, and UUID generation/parsing.
 
 ---
 
@@ -9,11 +9,11 @@
 
 - [Dependencies](#dependencies)
 - [Exports](#exports)
-- [Namespace: `date`](#namespace-date)
+- [Class: `date`](#class-date)
   - [date.isValid(sDate)](#dateisvalidsdate)
-- [Namespace: `xml`](#namespace-xml)
+- [Class: `xml`](#class-xml)
   - [xml.isValid(oXML)](#xmlisvalidoxml)
-- [Namespace: `json`](#namespace-json)
+- [Class: `json`](#class-json)
   - [json.isValid(oJson)](#jsonisvalidojson)
   - [json.copy(oJson)](#jsoncopyojson)
   - [json.replace(oJson, sOldValue, sNewValue, oEvaluate?)](#jsonreplaceojson-soldvalue-snewvalue-oevaluate)
@@ -25,7 +25,7 @@
   - [json.merge(oJson1, oJson2)](#jsonmergeojson1-ojson2)
   - [json.flat(oJson, sFlattenedProperty)](#jsonflatojson-sflattenedproperty)
   - [json.stripUndefined(oSourceJson)](#jsonstripundefinedosourcejson)
-- [Namespace: `array`](#namespace-array)
+- [Class: `array`](#class-array)
   - [array.add(oArray, oItem)](#arrayaddoarray-oitem)
   - [array.topN(oSortedArray, iTop)](#arraytopnosortedarray-itop)
   - [array.flat(oArray, sFlattenedProperty)](#arrayflatoarray-sflattenedproperty)
@@ -57,21 +57,20 @@
 | `xml2js` | XML string parsing and validation               |
 | `uuid`   | UUID format validation                          |
 | `lodash` | Deep merge, orderBy, uniqWith, and isEqual      |
-| `../_interface` | Internal logger and `_LOG` constant      |
 
 ---
 
 ## Exports
 
 ```js
-module.exports = { date, xml, json, array, UUID, _LOG };
+module.exports = { date, xml, json, array, UUID };
 ```
 
 ---
 
-## Namespace: `date`
+## Class: `date`
 
-Date-related validation helpers.
+Date-related validation helpers. All methods are `static`.
 
 ### `date.isValid(sDate)`
 
@@ -89,9 +88,9 @@ await date.isValid("not-a-date");    // false
 
 ---
 
-## Namespace: `xml`
+## Class: `xml`
 
-XML parsing and validation helpers.
+XML parsing and validation helpers. All methods are `static`.
 
 ### `xml.isValid(oXML)`
 
@@ -104,14 +103,14 @@ XML parsing and validation helpers.
 
 ```js
 await xml.isValid("<root><item>val</item></root>"); // true
-await xml.isValid("not xml");                        // false
+await xml.isValid("not xml");                       // false
 ```
 
 ---
 
-## Namespace: `json`
+## Class: `json`
 
-Comprehensive JSON/object manipulation utilities.
+Comprehensive JSON/object manipulation utilities. All methods are `static`.
 
 ### `json.isValid(oJson)`
 
@@ -243,9 +242,9 @@ Removes properties where the value is `undefined`, `null`, or an empty string.
 
 ---
 
-## Namespace: `array`
+## Class: `array`
 
-Array operations with automatic fallback to `json` namespace for single-object inputs.
+Array operations with automatic fallback to the `json` class for single-object inputs. All methods are `static`.
 
 ### `array.add(oArray, oItem)`
 
@@ -399,7 +398,7 @@ array.toGroupByPropertyList(data, ["region", "details.category"]);
 
 ## Class: `UUID`
 
-Singleton class for deterministic UUID generation and parsing based on a fixed field configuration. Encodes/decodes structured business data (CompanyCode, PersonWorkAgreementExternalID, TimeSheetRecord) into RFC-4122-compliant UUIDs.
+Singleton class for deterministic UUID generation and parsing based on a fixed field configuration. Encodes/decodes structured business data into RFC-4122-compliant UUIDs.
 
 ### Constructor
 
@@ -409,14 +408,6 @@ const uuidHelper = new UUID();
 
 Creates a singleton instance. Subsequent `new UUID()` calls return the same instance.
 
-**Internal field configuration:**
-
-| Field | Order | Format (Regex) | Description |
-|---|---|---|---|
-| `CompanyCode` | 1 | `/^[A-Za-z]{2}\d{2}$/` | 2 letters + 2 digits |
-| `PersonWorkAgreementExternalID` | 2 | `/^[Ii]\d{7}$\|^\d{1,9}$/` | I-number or numeric ID |
-| `TimeSheetRecord` | 3 | `/^\d{12}$/` | 12-digit record number |
-
 ---
 
 ### `converse(oJsonData)`
@@ -425,16 +416,16 @@ Encodes structured JSON data into a deterministic UUID.
 
 | Parameter   | Type     | Description                               |
 |------------|----------|-------------------------------------------|
-| `oJsonData` | `object` | Object with `CompanyCode`, `PersonWorkAgreementExternalID`, `TimeSheetRecord` |
+| `oJsonData` | `object` | Object                                    |
 | **Returns** | `string` | A valid UUID string                       |
 | **Throws**  | `Error`  | If any field has an invalid format or the generated UUID fails validation |
 
 ```js
 const uid = new UUID();
 uid.converse({
-  CompanyCode: "AB12",
-  PersonWorkAgreementExternalID: "I1234567",
-  TimeSheetRecord: "000000012345"
+  ABC: "AB12",
+  MNO: "I1234567",
+  XYZ: "000000012345"
 });
 // Returns a valid UUID string e.g., "c0656612-2e12-4345-8670-000000012345"
 ```
@@ -448,12 +439,12 @@ Decodes a previously generated UUID back into its original structured data.
 | Parameter | Type     | Description                        |
 |-----------|----------|------------------------------------|
 | `sUUID`   | `string` | A UUID previously created by `converse` |
-| **Returns** | `object` | `{ CompanyCode, PersonWorkAgreementExternalID, TimeSheetRecord }` or `{}` if invalid |
+| **Returns** | `object` | `{ ABC, MNO, XYZ }` or `{}` if invalid |
 
 ```js
 const uid = new UUID();
 uid.inverse("c0656612-2e12-4345-8670-000000012345");
-// { CompanyCode: "AB12", PersonWorkAgreementExternalID: "I1234567", TimeSheetRecord: "000000012345" }
+// { ABC: "AB12", MNO: "I1234567", XYZ: "000000012345" }
 ```
 
 ---
@@ -461,7 +452,7 @@ uid.inverse("c0656612-2e12-4345-8670-000000012345");
 ## Quick Usage Examples
 
 ```js
-const { date, xml, json, array, UUID } = require('./src/lib/utils');
+const { date, xml, json, array, UUID } = require('esi-cap').utils;
 
 // Validate & transform
 const valid = await date.isValid("2026-04-20");
@@ -478,6 +469,6 @@ const merged = json.merge({ a: 1 }, { b: 2 });                    // { a: 1, b: 
 
 // UUID round-trip
 const uid = new UUID();
-const uuidStr = uid.converse({ CompanyCode: "AB12", PersonWorkAgreementExternalID: "I1234567", TimeSheetRecord: "000000012345" });
+const uuidStr = uid.converse({ ABC: "AB12", MNO: "I1234567", XYZ: "000000012345" });
 const original = uid.inverse(uuidStr);
 ```
