@@ -50,7 +50,7 @@ export type CDSMethod = (event: string | string[], entitiesOrHandler: any | CDSH
  * Supports both signatures: (event, entities, handler) AND (event, handler).
  */
 export type CDSAfterMethod = (event: string | string[], entitiesOrHandler: any | CDSAfterHandler, handler?: CDSAfterHandler) => void;
-export type CDSHandler = (req: any) => any | Promise<any>;
+export type CDSHandler = (req: any, next: () => Promise<any>) => any | Promise<any>;
 export type CDSAfterHandler = (results: any, req: any) => any | Promise<any>;
 export type CDSServiceTx = CDSService;
 export type ServiceEventInterceptor = (oService: CDSService) => Promise<void>;
@@ -97,6 +97,7 @@ export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEventI
 /**
  * @callback CDSHandler
  * @param {any} req - The incoming request object.
+ * @param {() => Promise<any>} next - The function to call the next handler in the chain.
  * @returns {any | Promise<any>}
  */
 /**
