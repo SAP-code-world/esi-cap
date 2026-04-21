@@ -163,10 +163,12 @@ export type CDSHandler = (req: CDSRequest, next: () => Promise<any>) => any | Pr
 export type CDSAfterHandler = (results: any, req: CDSRequest) => any | Promise<any>;
 export type CDSServiceTx = CDSService;
 export type ServiceEventsServiceInterceptor = (oService: CDSService) => Promise<void>;
+export type ServiceEventsRequestInterceptor = (oRequest: CDSRequest) => Promise<void>;
 export type Service = typeof import("../service").service;
 export type ServiceEvents = Service["events"];
 export type ServiceEventsKey = keyof ServiceEvents;
-export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEventsServiceInterceptor>>;
+export type ServieEventsServiceHandler = Partial<Record<ServiceEventsKey, ServiceEventsServiceInterceptor>>;
+export type ServieEventsRequestHandler = Partial<Record<ServiceEventsKey, ServiceEventsRequestInterceptor>>;
 /**
  * impl module
  * @class
@@ -265,7 +267,7 @@ export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEvents
  * @returns {Promise<void>}
  */
 /**
- * @callback ServiceEventsServiceInterceptor
+ * @callback ServiceEventsRequestInterceptor
  * @param {CDSRequest} oRequest - Request object
  * @returns {Promise<void>}
  */
@@ -273,35 +275,36 @@ export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEvents
  * @typedef {typeof import('../service').service} Service
  * @typedef {Service['events']} ServiceEvents
  * @typedef {keyof ServiceEvents} ServiceEventsKey
- * @typedef {Partial<Record<ServiceEventsKey, ServiceEventsServiceInterceptor>>} ServieEventsHandler
+ * @typedef {Partial<Record<ServiceEventsKey, ServiceEventsServiceInterceptor>>} ServieEventsServiceHandler
+ * @typedef {Partial<Record<ServiceEventsKey, ServiceEventsRequestInterceptor>>} ServieEventsRequestHandler
  */
 export class impl {
     /**
      * @param {object} oService - Service object for which request to be executed
-     * @param {ServieEventsHandler} oEvent
+     * @param {ServieEventsServiceHandler|ServieEventsRequestHandler} oEvent
      * @returns {Promise<void>}
      */
-    static DBService(oService: object, oEvent: ServieEventsHandler): Promise<void>;
+    static DBService(oService: object, oEvent: ServieEventsServiceHandler | ServieEventsRequestHandler): Promise<void>;
     /**
      * @param {object} oService - Service object for which request to be executed
      * @param {string} sServiceName - Service Name
-     * @param {ServieEventsHandler} oEvent
+     * @param {ServieEventsServiceHandler|ServieEventsRequestHandler} oEvent
      * @param {string|any[]} oLocalEntities
-     * @param {ServieEventsHandler} oRemoteEvent
+     * @param {ServieEventsServiceHandler|ServieEventsRequestHandler} oRemoteEvent
      * @param {string|any[]} [oRemoteEntities]
      * @param {any[]} [oRemoteHandlers]
      * @param {boolean} bRefreshUserContext
      * @returns {Promise<void>}
      */
-    static LocalService(oService: object, sServiceName: string, oEvent?: ServieEventsHandler, oLocalEntities?: string | any[], oRemoteEvent?: ServieEventsHandler, oRemoteEntities?: string | any[], oRemoteHandlers?: any[], bRefreshUserContext?: boolean): Promise<void>;
+    static LocalService(oService: object, sServiceName: string, oEvent?: ServieEventsServiceHandler | ServieEventsRequestHandler, oLocalEntities?: string | any[], oRemoteEvent?: ServieEventsServiceHandler | ServieEventsRequestHandler, oRemoteEntities?: string | any[], oRemoteHandlers?: any[], bRefreshUserContext?: boolean): Promise<void>;
     /**
      * @param {object} oService - Service object for which request to be executed
-     * @param {ServieEventsHandler} oEvent
+     * @param {ServieEventsServiceHandler|ServieEventsRequestHandler} oEvent
      * @param {string|any[]} oEntities
      * @param {any[]} [oHandlers]
      * @param {boolean} bRefreshUserContext
      * @returns {Promise<void>}
      */
-    static RemoteService(oService: object, oEvent?: ServieEventsHandler, oEntities?: string | any[], oHandlers?: any[], bRefreshUserContext?: boolean): Promise<void>;
+    static RemoteService(oService: object, oEvent?: ServieEventsServiceHandler | ServieEventsRequestHandler, oEntities?: string | any[], oHandlers?: any[], bRefreshUserContext?: boolean): Promise<void>;
 }
 //# sourceMappingURL=index.d.ts.map
