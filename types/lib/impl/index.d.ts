@@ -40,6 +40,115 @@ export type CDSService = {
      */
     delete: (entity: string, where: any) => Promise<number>;
 };
+export type CDSRequest<T> = {
+    /**
+     * - The request payload.
+     */
+    data: T & {
+        params?: any;
+    };
+    /**
+     * - Map of request headers.
+     */
+    headers: Record<string, string>;
+    /**
+     * - Positional parameters from the URL.
+     */
+    params: any[];
+    /**
+     * - The authenticated user information.
+     */
+    user: CDSUser;
+    /**
+     * - The CQN (OData-like) query structure.
+     */
+    query: any;
+    /**
+     * - Information about the target entity.
+     */
+    target: CDSTarget;
+    /**
+     * - The name of the event (e.g., 'READ', 'UPDATE').
+     */
+    event: string;
+    /**
+     * - The underlying HTTP request (if applicable).
+     */
+    http?: {
+        req: {
+            headers: Record<string, string>;
+        };
+    };
+    /**
+     * - Rejects the request with a specific status and message.
+     */
+    reject: CDSReject;
+    /**
+     * - Adds an error to the request without necessarily stopping execution.
+     */
+    error: CDSError;
+    /**
+     * - Adds a warning message to the response.
+     */
+    warn: (opts: {
+        message: string;
+    }) => void;
+    /**
+     * - Adds an informational message to the response.
+     */
+    info: (msg: string) => void;
+    /**
+     * - Collection of errors collected during processing.
+     */
+    errors?: any[];
+    /**
+     * - esi-cap runtime extension: logic to run before the 'on' phase.
+     */
+    PreOn?: any;
+    /**
+     * - esi-cap runtime extension: logic to run after the 'on' phase.
+     */
+    PostOn?: any;
+    /**
+     * - esi-cap runtime extension: pre-mashup processing.
+     */
+    PreMeshUp?: any;
+};
+export type CDSUser = {
+    /**
+     * - The user's unique identifier.
+     */
+    id: string;
+    /**
+     * - Custom user attributes.
+     */
+    attr: Record<string, any>;
+    /**
+     * - Checks if the user has a specific role.
+     */
+    is: (role: string) => boolean;
+};
+export type CDSTarget = {
+    /**
+     * - The absolute name of the target entity.
+     */
+    name: string;
+    /**
+     * - Any projection (select list) applied to the entity.
+     */
+    projection?: any;
+};
+export type CDSReject = (opts?: {
+    status?: number;
+    message?: string;
+}) => void;
+export type CDSError = (opts: {
+    status?: number;
+    message?: string;
+    code?: string;
+    target?: string;
+    args?: any[];
+}) => void;
 /**
  * Handles 'on' and 'before' event registrations.
  * Supports both signatures: (event, entities, handler) AND (event, handler).
@@ -50,14 +159,14 @@ export type CDSMethod = (event: string | string[], entitiesOrHandler: any | CDSH
  * Supports both signatures: (event, entities, handler) AND (event, handler).
  */
 export type CDSAfterMethod = (event: string | string[], entitiesOrHandler: any | CDSAfterHandler, handler?: CDSAfterHandler) => void;
-export type CDSHandler = (req: any, next: () => Promise<any>) => any | Promise<any>;
-export type CDSAfterHandler = (results: any, req: any) => any | Promise<any>;
+export type CDSHandler = (req: CDSRequest, next: () => Promise<any>) => any | Promise<any>;
+export type CDSAfterHandler = (results: any, req: CDSRequest) => any | Promise<any>;
 export type CDSServiceTx = CDSService;
-export type ServiceEventInterceptor = (oService: CDSService) => Promise<void>;
+export type ServiceEventsServiceInterceptor = (oService: CDSService) => Promise<void>;
 export type Service = typeof import("../service").service;
 export type ServiceEvents = Service["events"];
 export type ServiceEventsKey = keyof ServiceEvents;
-export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEventInterceptor>>;
+export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEventsServiceInterceptor>>;
 /**
  * impl module
  * @class
@@ -75,6 +184,47 @@ export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEventI
  * @property {(event: string, data?: any) => Promise<void>} emit - Synchronously or asynchronously triggers an event.
  * @property {(action: string, params?: any) => Promise<any>} send - Sends a custom action or function call to the service.
  * @property {(entity: string, where: any) => Promise<number>} delete - Deletes records matching the given criteria.
+ */
+/**
+ * @template T
+ * @typedef {Object} CDSRequest
+ * @property {T & { params?: any }} data - The request payload.
+ * @property {Record<string, string>} headers - Map of request headers.
+ * @property {any[]} params - Positional parameters from the URL.
+ * @property {CDSUser} user - The authenticated user information.
+ * @property {any} query - The CQN (OData-like) query structure.
+ * @property {CDSTarget} target - Information about the target entity.
+ * @property {string} event - The name of the event (e.g., 'READ', 'UPDATE').
+ * @property {{ req: { headers: Record<string, string> } }} [http] - The underlying HTTP request (if applicable).
+ * @property {CDSReject} reject - Rejects the request with a specific status and message.
+ * @property {CDSError} error - Adds an error to the request without necessarily stopping execution.
+ * @property {(opts: { message: string }) => void} warn - Adds a warning message to the response.
+ * @property {(msg: string) => void} info - Adds an informational message to the response.
+ * @property {any[]} [errors] - Collection of errors collected during processing.
+ * @property {any} [PreOn] - esi-cap runtime extension: logic to run before the 'on' phase.
+ * @property {any} [PostOn] - esi-cap runtime extension: logic to run after the 'on' phase.
+ * @property {any} [PreMeshUp] - esi-cap runtime extension: pre-mashup processing.
+ */
+/**
+ * @typedef {Object} CDSUser
+ * @property {string} id - The user's unique identifier.
+ * @property {Record<string, any>} attr - Custom user attributes.
+ * @property {(role: string) => boolean} is - Checks if the user has a specific role.
+ */
+/**
+ * @typedef {Object} CDSTarget
+ * @property {string} name - The absolute name of the target entity.
+ * @property {any} [projection] - Any projection (select list) applied to the entity.
+ */
+/**
+ * @callback CDSReject
+ * @param {{ status?: number; message?: string }} [opts]
+ * @returns {void}
+ */
+/**
+ * @callback CDSError
+ * @param {{ status?: number; message?: string; code?: string; target?: string; args?: any[] }} opts
+ * @returns {void}
  */
 /**
  * Handles 'on' and 'before' event registrations.
@@ -96,29 +246,34 @@ export type ServieEventsHandler = Partial<Record<ServiceEventsKey, ServiceEventI
  */
 /**
  * @callback CDSHandler
- * @param {any} req - The incoming request object.
+ * @param {CDSRequest} req - The incoming request object.
  * @param {() => Promise<any>} next - The function to call the next handler in the chain.
  * @returns {any | Promise<any>}
  */
 /**
  * @callback CDSAfterHandler
  * @param {any} results - The results from the primary execution.
- * @param {any} req - The incoming request object.
+ * @param {CDSRequest} req - The incoming request object.
  * @returns {any | Promise<any>}
  */
 /**
  * @typedef {CDSService} CDSServiceTx
  */
 /**
- * @callback ServiceEventInterceptor
+ * @callback ServiceEventsServiceInterceptor
  * @param {CDSService} oService - Service object for which request to be executed
+ * @returns {Promise<void>}
+ */
+/**
+ * @callback ServiceEventsServiceInterceptor
+ * @param {CDSRequest} oRequest - Request object
  * @returns {Promise<void>}
  */
 /**
  * @typedef {typeof import('../service').service} Service
  * @typedef {Service['events']} ServiceEvents
  * @typedef {keyof ServiceEvents} ServiceEventsKey
- * @typedef {Partial<Record<ServiceEventsKey, ServiceEventInterceptor>>} ServieEventsHandler
+ * @typedef {Partial<Record<ServiceEventsKey, ServiceEventsServiceInterceptor>>} ServieEventsHandler
  */
 export class impl {
     /**
