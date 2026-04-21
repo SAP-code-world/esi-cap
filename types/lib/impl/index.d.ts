@@ -163,7 +163,7 @@ export type CDSHandler = (req: CDSRequest, next: () => Promise<any>) => any | Pr
 export type CDSAfterHandler = (results: any, req: CDSRequest) => any | Promise<any>;
 export type CDSServiceTx = CDSService;
 export type ServiceEventsServiceInterceptor = (oService: CDSService) => Promise<void>;
-export type ServiceEventsRequestInterceptor = (oRequest: CDSRequest) => Promise<void>;
+export type ServiceEventsRequestInterceptor = (oRequest: CDSRequest) => Promise<any[]>;
 export type Service = typeof import("../service").service;
 export type ServiceEvents = Service["events"];
 export type ServiceEventsKey = keyof ServiceEvents;
@@ -269,7 +269,7 @@ export type ServieEventsRequestHandler = Partial<Record<ServiceEventsKey, Servic
 /**
  * @callback ServiceEventsRequestInterceptor
  * @param {CDSRequest} oRequest - Request object
- * @returns {Promise<void>}
+ * @returns {Promise<any[]>}
  */
 /**
  * @typedef {typeof import('../service').service} Service

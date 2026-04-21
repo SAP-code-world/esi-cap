@@ -49,8 +49,9 @@ export class service {
     /**
      * @param {object} oRequest - Request Object
      * @param {object} oJsonData - JSON Data
+     * @param {(error: Error) => Promise<void>} [onError] - Optional async error handler. Defaults to an empty async function.
      */
-    static executeIflow(oRequest: object, oJsonData: object, onError?: () => Promise<void>): Promise<void>;
+    static executeIflow(oRequest: object, oJsonData: object, onError?: (error: Error) => Promise<void>): Promise<void>;
     /**
      * @param {object} oService - Service Object
      * @param {object} oRequest - Request Object
