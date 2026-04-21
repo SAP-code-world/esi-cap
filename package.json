@@ -53,7 +53,8 @@
     "gitbuild": "npm run prepare && npm run postpublish",
     "patch": "npm version patch",
     "minor": "npm version minor",
-    "major": "npm version major"
+    "major": "npm version major",
+    "unpublish": "node build/unpublish.js"
   },
   "files": [
     "dist",
