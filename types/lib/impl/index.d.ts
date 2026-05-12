@@ -42,7 +42,7 @@ export type CDSService = {
     /**
      * - Registers a handler for read operation.
      */
-    read: (entity: string, where: any) => Promise<number>;
+    read: (entity: string, where: any) => Promise<any>;
 };
 export type CDSRequest<T> = {
     /**
@@ -190,7 +190,7 @@ export type ServieEventsRequestHandler = Partial<Record<ServiceEventsKey, Servic
  * @property {(event: string, data?: any) => Promise<void>} emit - Synchronously or asynchronously triggers an event.
  * @property {(action: string, params?: any) => Promise<any>} send - Sends a custom action or function call to the service.
  * @property {(entity: string, where: any) => Promise<number>} delete - Deletes records matching the given criteria.
- * @property {(entity: string, where: any) => Promise<number>} read - Registers a handler for read operation.
+ * @property {(entity: string, where: any) => Promise<any>} read - Registers a handler for read operation.
  */
 /**
  * @template T
