@@ -24,6 +24,10 @@ export type CDSService = {
      */
     before: CDSMethod;
     /**
+     * - Registers a handler for read operation.
+     */
+    read: CDSMethod;
+    /**
      * - Registers a handler to run after the standard logic.
      */
     after: CDSAfterMethod;
@@ -182,6 +186,7 @@ export type ServieEventsRequestHandler = Partial<Record<ServiceEventsKey, Servic
  * @property {(req: any) => CDSServiceTx} transaction - Alias for the tx method.
  * @property {CDSMethod} on - Registers a handler for specific events.
  * @property {CDSMethod} before - Registers a handler to run before the standard logic.
+ * @property {CDSMethod} read - Registers a handler for read operation.
  * @property {CDSAfterMethod} after - Registers a handler to run after the standard logic.
  * @property {(event: string, data?: any) => Promise<void>} emit - Synchronously or asynchronously triggers an event.
  * @property {(action: string, params?: any) => Promise<any>} send - Sends a custom action or function call to the service.
