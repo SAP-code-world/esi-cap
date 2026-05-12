@@ -42,7 +42,7 @@ export type CDSService = {
     /**
      * - Registers a handler for read operation.
      */
-    read: (entity: string, where: any) => Promise<any>;
+    read: (entity: string) => SelectBuilder;
 };
 export type CDSRequest<T> = {
     /**
@@ -132,6 +132,23 @@ export type CDSUser = {
      */
     is: (role: string) => boolean;
 };
+/**
+ * Fluent query builder returned by srv.read().
+ */
+export type SelectBuilder = {
+    /**
+     * - Adds WHERE clause using query-by-example object.
+     */
+    where: (where: any) => SelectBuilder;
+    /**
+     * - Executes query and returns array of results.
+     */
+    exec?: () => Promise<any[]>;
+    /**
+     * - Executes query expecting single result.
+     */
+    one: () => Promise<any>;
+};
 export type CDSTarget = {
     /**
      * - The absolute name of the target entity.
@@ -190,7 +207,7 @@ export type ServieEventsRequestHandler = Partial<Record<ServiceEventsKey, Servic
  * @property {(event: string, data?: any) => Promise<void>} emit - Synchronously or asynchronously triggers an event.
  * @property {(action: string, params?: any) => Promise<any>} send - Sends a custom action or function call to the service.
  * @property {(entity: string, where: any) => Promise<number>} delete - Deletes records matching the given criteria.
- * @property {(entity: string, where: any) => Promise<any>} read - Registers a handler for read operation.
+ * @property {(entity: string) => SelectBuilder} read - Registers a handler for read operation.
  */
 /**
  * @template T
@@ -217,6 +234,13 @@ export type ServieEventsRequestHandler = Partial<Record<ServiceEventsKey, Servic
  * @property {string} id - The user's unique identifier.
  * @property {Record<string, any>} attr - Custom user attributes.
  * @property {(role: string) => boolean} is - Checks if the user has a specific role.
+ */
+/**
+ * Fluent query builder returned by srv.read().
+ * @typedef {Object} SelectBuilder
+ * @property {(where: any) => SelectBuilder} where - Adds WHERE clause using query-by-example object.
+ * @property {() => Promise<any[]>} [exec] - Executes query and returns array of results.
+ * @property {() => Promise<any>} one - Executes query expecting single result.
  */
 /**
  * @typedef {Object} CDSTarget
